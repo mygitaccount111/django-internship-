@@ -1,0 +1,38 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}View Item details{% endblock %}
+{% block content %}
+<div class="container mt-4">
+	<div class="card col-md-8 mx-auto shadow-lg">
+		<div class="card-body">
+			<h3>Restaurant View</h3>
+			<div class="row">
+				<div class="col-sm">
+					<img src="{{z.iimg.url}}" height="180px" width="100%">
+				</div>
+				<div class="col">
+					<table class="table table-borderless">
+						<tr>
+							<th>Item Name</th>
+							<th>{{z.iname}}</th>
+						</tr>
+						<tr>
+							<th>Item Category</th>
+							<th>{{z.icategory}}</th>
+						</tr>
+						<tr>
+							<th>price</th>
+							<th>{{z.iprice}}</th>
+						</tr>
+						<tr>
+							<th>Availability</th>
+							<th>{{z.itavailability}}</th>
+						</tr>
+					</table>
+				</div>
+			</div>
+				<a href="{% url 'item1' %}" class="btn btn-block btn-outline-warning my-2">Back To list</a>
+		</div>
+	</div>
+</div>
+{% endblock %}

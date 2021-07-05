@@ -1,0 +1,57 @@
+{% extends 'app/base.html' %}
+{% block title %}Restaurant List{% endblock %}
+{% block content %}
+<div class="container mt-4">
+	<div class="row">
+		<div class=" card col-md-4 shadow-lg mx-2 h-100">
+			<div class="card-body">
+				<form method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<h3 class="text-center text-light bg-primary p-2 border-rounded">Add item</h3>
+				{% for j in q %}
+						{{j}}
+				{% endfor %}
+				<div class="row">
+					<div class="col">
+						<input type="reset" name="Reset" class="btn btn-outline-info my-2 form-control">
+					</div>
+					<div class="col">
+						<input type="submit" value="Create" class="btn btn-outline-success my-2 form-control">
+					</div>
+				</div>
+			</form>
+			</div>
+		</div>
+	
+	<div class="card row-md shadow-lg mx-2">
+			<div class="card-body">
+				<h3 class="text-light p-2 border-rounded bg-warning">List of Items</h3>
+				<table class="table table-borderless table-hover ">
+					<tr class="bg-dark text-light">
+						<th>S.No</th>
+						<th>Item Name</th>
+						<th>Item Category</th>
+						<th>Item price</th>
+						<th>Operations</th>
+					</tr>
+					{% for k in a %}
+					<tr>
+						<td>{{forloop.counter}}</td>
+						<td><a href="{% url 'rsvw1' k.id %}">{{k.iname}}</a></td>
+						<td>  
+						        {% if k.icategory == 'VG' %}
+						     <span class="badge badge-success">Vegeterian </span>
+						     {% else %}
+						      <span class="badge badge-danger">Non-Vegeterian </span>
+						     {% endif %}
+						</td>
+						<td>{{k.iprice}}</td>
+						<td><a href="{% url 'rsup1' k.id %}"class="btn btn-outline-warning mx-2">Update</a><a href="{% url 'ldel' k.id %}"  class="btn btn-outline-danger mx-2">Delete</a></td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+	</div>
+</div>
+
+{% endblock %}
